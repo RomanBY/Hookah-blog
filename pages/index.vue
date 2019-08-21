@@ -81,9 +81,9 @@
   </v-layout>
 </template>
 
-<script>
+<script lang="ts">
   import Base from '../core/Base'
-  import {Component} from 'vue-property-decorator'
+  import { Component } from 'vue-property-decorator'
   import Logo from '~/components/Logo.vue'
   import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
@@ -95,7 +95,7 @@
   })
   export default class extends Base {
 
-    constructor() {
+    constructor () {
       super()
     }
 
