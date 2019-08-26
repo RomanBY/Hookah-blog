@@ -1,56 +1,22 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title"/>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
       fixed
       app
+      class="toolbar"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"/>
+      <v-toolbar-title
+        class="toolbar__number"
+        v-text="number"/>
       <v-spacer/>
+      <v-toolbar-title
+        class="d-md-block d-sm-none toolbar__menu-item mx-2"
+        v-for="(item, key) in menu"
+        :key="key"
+      >{{ item.title }}</v-toolbar-title>
       <v-btn
+        class="d-md-none d-sm-block"
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
@@ -100,23 +66,74 @@
     }
 
     clipped: boolean = false
-    drawer: boolean = false
     fixed: boolean = false
-    items: object[] = [
-      {
-        icon: 'mdi-apps',
-        title: 'Welcome',
-        to: '/'
-      },
-      {
-        icon: 'mdi-chart-bubble',
-        title: 'Inspire',
-        to: '/inspire'
-      }
-    ]
-    miniVariant: boolean = false
     right: boolean = true
     rightDrawer: boolean = false
-    title: string = 'Vuetify.js'
+    number: string = '+375 (33) 333 33 33'
+    menu: object[] = [
+      {
+        title: 'Главная',
+        goTo: '',
+        active: true
+      },
+      {
+        title: 'О нас',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Преимущества',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Почему мы',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Цены',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Отзывы',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Гарантии',
+        goTo: '',
+        active: false
+      },
+      {
+        title: 'Контакты',
+        goTo: '',
+        active: false
+      }
+    ]
   }
 </script>
+<style scoped lang="scss">
+  @import "../assets/variables";
+
+  .toolbar {
+    &__number {
+      cursor: pointer;
+      transition: 250ms;
+
+      &:hover {
+        color: $color--menu--text;
+      }
+    }
+
+    &__menu-item {
+      cursor: pointer;
+      transition: 250ms;
+
+      &:hover {
+        color: $color--menu--text;
+      }
+    }
+  }
+</style>
