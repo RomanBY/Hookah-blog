@@ -46,8 +46,6 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer
-      :fixed="fixed"
-      app
     >
       <span>&copy; 2019</span>
     </v-footer>
@@ -66,7 +64,6 @@
     }
 
     clipped: boolean = false
-    fixed: boolean = false
     right: boolean = true
     rightDrawer: boolean = false
     number: string = '+375 (33) 333 33 33'

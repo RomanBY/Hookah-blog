@@ -1,24 +1,20 @@
 <template>
-  <v-row
-    column
-    justify-center
-    align-center
-  >
-    <v-col
-      lg="12"
-      sm="8"
-      md="6"
-    >
-    123
-    </v-col>
-  </v-row>
+  <div>
+    <slider class="slider"></slider>
+
+  </div>
 </template>
 
 <script lang="ts">
   import Base from '../core/Base'
   import { Component } from 'vue-property-decorator'
+  import Slider from '~/components/Slider.vue'
 
-  @Component
+  @Component({
+    components: {
+      Slider
+    }
+  })
   export default class extends Base {
 
     constructor () {
@@ -27,3 +23,12 @@
 
   }
 </script>
+<style scoped lang="scss">
+  @import "../assets/variables";
+  .slider {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+</style>
+
