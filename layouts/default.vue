@@ -6,17 +6,24 @@
       app
       class="toolbar"
     >
+      <v-img
+        max-width="30"
+        :src="require('~/assets/img/Logo-Main.svg')"
+        class="mr-3"
+      ></v-img>
       <v-toolbar-title
-        class="toolbar__number"
-        v-text="number"/>
+        class="toolbar__name"
+      >
+        <p class="mb-0">KALYAN<span class="toolbar__name-last">GO</span></p>
+      </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-title
-        class="d-md-block d-sm-none toolbar__menu-item mx-2"
+        class="d-lg-block d-none toolbar__menu-item mx-2"
         v-for="(item, key) in menu"
         :key="key"
-      >{{ item.title }}</v-toolbar-title>
+      >{{ item.title }}
+      </v-toolbar-title>
       <v-btn
-        class="d-md-none d-sm-block"
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
@@ -35,13 +42,18 @@
       fixed
     >
       <v-list>
-        <v-list-item @click.native="right = !right">
+        <v-list-item
+          v-for="(item, index) in navigation"
+          :key="index"
+        >
           <v-list-item-action>
             <v-icon light>
               mdi-repeat
             </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title
+          >{{ item.title }}
+          </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -55,24 +67,32 @@
 <script lang="ts">
   import Base from '~/core/Base'
   import { Component } from 'vue-property-decorator'
+  import { I_Menu } from '~/modules/intefaces'
 
   @Component
   export default class extends Base {
 
     constructor () {
-      super ()
+      super()
     }
 
     clipped: boolean = false
     right: boolean = true
     rightDrawer: boolean = false
     number: string = '+375 (33) 333 33 33'
-    menu: object[] = [
+    menu: I_Menu.IMainManu[] = [
       {
         title: 'Главная',
         goTo: '',
         active: true
       },
+      {
+        title: 'Блог',
+        goTo: '',
+        active: false
+      },
+    ]
+    navigation: I_Menu.INavigation[] = [
       {
         title: 'О нас',
         goTo: '',
@@ -115,12 +135,21 @@
   @import "../assets/variables";
 
   .toolbar {
-    &__number {
+    &__name {
       cursor: pointer;
       transition: 250ms;
 
+      &-last {
+        color: #ebcd84;
+        transition: 250ms;
+      }
+
       &:hover {
         color: $color--menu--text;
+
+        & .toolbar__name-last {
+          color: white;
+        }
       }
     }
 
