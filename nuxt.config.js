@@ -25,11 +25,13 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'aos/dist/aos.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/aos.js'
   ],
   /*
   ** Nuxt.js dev-modules

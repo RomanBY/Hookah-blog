@@ -1,23 +1,32 @@
 <template>
   <div>
-    <slider class="slider"></slider>
     <main-info></main-info>
-    <about-us></about-us>
+    <about></about>
+    <parallax></parallax>
+    <reasons></reasons>
+    <prices></prices>
+    <contacts></contacts>
   </div>
 </template>
 
 <script lang="ts">
   import Base from '../core/Base'
   import { Component } from 'vue-property-decorator'
-  import Slider from '~/components/Slider.vue'
   import MainInfo from '~/components/MainInfo.vue'
-  import AboutUs from '~/components/AboutUs.vue'
+  import Parallax from '~/components/Parallax.vue'
+  import Reasons from '~/components/Reasons.vue'
+  import Prices from '~/components/Prices.vue'
+  import About from '~/components/About.vue'
+  import Contacts from '~/components/Contacts.vue'
 
   @Component({
     components: {
-      Slider,
       MainInfo,
-      AboutUs
+      About,
+      Parallax,
+      Reasons,
+      Prices,
+      Contacts
     }
   })
   export default class extends Base {
@@ -30,10 +39,5 @@
 </script>
 <style scoped lang="scss">
   @import "../assets/variables";
-  .slider {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
 </style>
 
