@@ -20,41 +20,51 @@
           <v-form
             lazy-validation
           >
-            <v-text-field
-              data-aos="fade-up"
-              data-aos-anchor-placement="bottom-bottom"
-              light
-              v-model="name"
-              :counter="10"
-              label="Имя"
-              color="blue-grey"
-            ></v-text-field>
-            <v-text-field
-              light
-              v-model="contact"
-              label="Контакты"
-              color="blue-grey"
-            ></v-text-field>
-            <v-textarea
-              light
-              v-model="message"
-              label="Сообщение"
-              color="blue-grey"
-            ></v-textarea>
-            <v-checkbox
-              light
-              v-model="checkbox"
-              label="Согласен с политикой конфиденциальности"
-            ></v-checkbox>
-            <v-btn
-              light
-              :disabled="!checkbox"
-              color="white"
-              class="mr-4"
-              @click="showAlert = true"
-            >
-              Отправить
-            </v-btn>
+            <div data-aos="fade-up">
+              <v-text-field
+                data-aos-anchor-placement="bottom-bottom"
+                light
+                v-model="name"
+                :counter="10"
+                label="Имя"
+                color="blue-grey"
+              ></v-text-field>
+            </div>
+            <div data-aos="fade-up">
+              <v-text-field
+                light
+                v-model="contact"
+                label="Контакты"
+                color="blue-grey"
+              ></v-text-field>
+            </div>
+            <div data-aos="fade-up">
+              <v-textarea
+                light
+                outlined
+                v-model="message"
+                label="Сообщение"
+                color="blue-grey"
+              ></v-textarea>
+            </div>
+            <div data-aos="fade-up">
+              <v-checkbox
+                light
+                v-model="checkbox"
+                label="Согласен с политикой конфиденциальности"
+              ></v-checkbox>
+            </div>
+            <div data-aos="fade-up">
+              <v-btn
+                light
+                :disabled="!checkbox"
+                color="white"
+                class="mr-4"
+                @click="showAlert = true"
+              >
+                Отправить
+              </v-btn>
+            </div>
           </v-form>
           <v-dialog
             v-model="showAlert"

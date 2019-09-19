@@ -24,11 +24,13 @@
         </v-toolbar-title>
         <v-spacer/>
         <v-toolbar-title
-          class="d-lg-block d-none toolbar__menu-item mx-2"
           v-for="(item, key) in menu"
           :key="key"
         >
-          <nuxt-link :to="item.url">
+          <nuxt-link
+            class="d-lg-block d-none toolbar__menu-item mx-2"
+            :to="item.url"
+          >
             {{ item.title }}
           </nuxt-link>
         </v-toolbar-title>
@@ -243,7 +245,7 @@
       cursor: pointer;
 
       &:hover {
-        color: $color--menu--text;
+        color: $color--menu--text-hover;
       }
     }
   }
@@ -259,7 +261,7 @@
       }
 
       &:hover {
-        color: $color--menu--text;
+        color: $color--menu--text-hover;
 
         & .toolbar__name-last {
           color: white;
@@ -270,9 +272,10 @@
     &__menu-item {
       cursor: pointer;
       transition: 250ms;
+      color: $color--menu--text;
 
       &:hover {
-        color: $color--menu--text;
+        color: $color--menu--text-hover;
       }
     }
   }
