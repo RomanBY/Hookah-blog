@@ -6,13 +6,12 @@ Vue.use(Vuex)
 const store = () => new Vuex.Store({
 
   state: {
-    scroll: 0,
-    value: 456
+    token: true
   },
   mutations: {
-    getScroll (state, value) {
-      state.scroll = value
+    changeToken (state, value) {
       console.log(value)
+      state.token = value
     }
   }
 })

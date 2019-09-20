@@ -24,5 +24,6 @@
   @import "../assets/variables";
   .content {
     height: 100vh;
+    width: 100%;
   }
 </style>

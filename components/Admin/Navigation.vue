@@ -22,7 +22,10 @@
         <v-icon left>mdi-account</v-icon>
         Пользователи
       </v-tab>
-      <v-tab @click="$router.push('/')" class="navigation__tab justify-start">
+      <v-tab
+        @click="exitAdmin"
+        class="navigation__tab justify-start"
+      >
         <v-icon left>mdi-exit-to-app</v-icon>
         Выйти
       </v-tab>
@@ -33,7 +36,6 @@
 <script lang="ts">
   import Base from '../../core/Base'
   import { Component, Watch } from 'vue-property-decorator'
-
 
 
   @Component
@@ -50,10 +52,16 @@
 
     tabsControl: number = 0
 
+    exitAdmin () {
+      this.$store.commit('changeToken', false)
+      this.$router.push('/')
+    }
+
   }
 </script>
 <style scoped lang="scss">
   @import "../../assets/variables";
+
   .navigation {
     height: 100%;
     overflow: hidden;
