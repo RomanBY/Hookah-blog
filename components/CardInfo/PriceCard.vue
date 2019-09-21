@@ -47,7 +47,7 @@
 <script lang="ts">
   import Base from '../../core/Base'
   import { Component, Prop } from 'vue-property-decorator'
-  import { I_Price, I_Reason } from '~/modules/intefaces'
+  import { I_Price } from '~/modules/intefaces'
 
   @Component
   export default class PriceCard extends Base {

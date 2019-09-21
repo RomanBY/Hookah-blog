@@ -6,12 +6,15 @@ Vue.use(Vuex)
 const store = () => new Vuex.Store({
 
   state: {
-    token: true
+    login: false,
+    posts: []
   },
   mutations: {
-    changeToken (state, value) {
-      console.log(value)
+    changeLogin (state, value) {
       state.token = value
+    },
+    changePosts (state, value) {
+      state.posts = value
     }
   }
 })

@@ -21,8 +21,18 @@
                       {{ item.title }}
                     </h6>
                     <div class="d-flex">
-                      <v-icon color="darken-2">mdi-message-text</v-icon>
-                      <span class="post__comment ml-2">{{ item.comments.length }}</span>
+                      <div
+                        v-if="item.comments && item.comments.length > 0"
+                        class="d-flex mr-5">
+                        <v-icon color="darken-2">mdi-message-text</v-icon>
+                        <span class="post__comment ml-2">{{ item.comments.length }}</span>
+                      </div>
+                      <div
+                        v-if="item.images && item.images.length > 0"
+                        class="d-flex">
+                        <v-icon color="darken-2">mdi-image-outline</v-icon>
+                        <span class="post__comment ml-2">{{ item.images.length }}</span>
+                      </div>
                     </div>
                   </v-col>
                   <v-col

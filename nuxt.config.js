@@ -36,7 +36,7 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  devModules: [
+  buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build'
@@ -59,7 +59,6 @@ module.exports = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: true,
       themes: {

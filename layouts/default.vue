@@ -2,7 +2,7 @@
   <v-app dark>
     <div v-scroll="onScroll">
       <v-img
-        v-show="scroll > 1200"
+        v-show="scroll > 1200 && $route.path === '/'"
         class="bg-image"
         :src="require('../assets/img/bg/actions-bg.jpg')"
         height="100vh"
@@ -174,6 +174,12 @@
         active: false,
         url: '/blog'
       },
+      {
+        title: 'Админ панель',
+        goTo: '',
+        active: false,
+        url: '/admin'
+      }
     ]
     navigation: I_Menu.INavigation[] = [
       {
@@ -213,7 +219,14 @@
     }
 
     changePlace (anchor: string) {
-      this.$vuetify.goTo(anchor)
+      if (this.$route.path === '/') {
+        this.$vuetify.goTo(anchor)
+      } else {
+        this.$router.push('/')
+        setTimeout(() => {
+          this.$vuetify.goTo(anchor)
+        }, 500)
+      }
       this.rightDrawer = false
     }
   }

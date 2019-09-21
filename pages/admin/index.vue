@@ -5,15 +5,13 @@
           :fixed="true"
         >
           <navigation
+            :tab-number="tabNumber"
             @change-tab="tabNumber = $event"
           />
         </v-navigation-drawer>
         <v-tabs-items v-model="tabNumber">
           <v-tab-item>
             <analytics/>
-          </v-tab-item>
-          <v-tab-item>
-            <create-post/>
           </v-tab-item>
           <v-tab-item>
             <posts/>
@@ -36,17 +34,15 @@
   import { Component } from 'vue-property-decorator'
   import Navigation from '~/components/Admin/Navigation.vue'
   import Analytics from '~/components/Admin/Analytics.vue'
-  import CreatePost from '~/components/Admin/CreatePost.vue'
   import Posts from '~/components/Admin/Posts.vue'
   import Users from '~/components/Admin/Users.vue'
-  import Login from '~/components/Admin/login.vue'
+  import Login from '~/components/Admin/Login.vue'
 
   @Component({
     layout: 'admin',
     components: {
       Navigation,
       Analytics,
-      CreatePost,
       Posts,
       Users,
       Login
@@ -58,11 +54,11 @@
       super()
     }
 
-    tabNumber: number = 0
+    tabNumber: number = 1
     login: boolean = false
 
     created () {
-      this.login = this.$store.state.token
+      this.login = this.$store.state.login
     }
 
   }

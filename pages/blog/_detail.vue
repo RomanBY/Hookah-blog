@@ -1,5 +1,7 @@
 <template>
-  <v-container class="post-detail">
+  <v-container
+    class="post-detail mb-5"
+  >
     <v-row>
       <nuxt-link to="/blog">
         <v-btn
@@ -10,28 +12,44 @@
           Назад
         </v-btn>
       </nuxt-link>
-      <span class="ml-auto">{{ post.createAt }}</span>
+      <span
+        v-if="post && post.createAt"
+        class="ml-auto"
+      >{{ post.createAt }}</span>
     </v-row>
     <v-row
       class="post"
       justify="center"
     >
       <v-col cols="12">
-        <h1 class="text-center">{{ post.title }}</h1>
+        <h1
+          v-if="post && post.title"
+          class="text-center">{{ post.title }}</h1>
       </v-col>
       <v-col cols="12">
         <v-img
+          v-if="post && post.images.length === 1"
           contain
           height="500"
           :src="post.images[0]"
         ></v-img>
+        <v-carousel v-if="post && post.images.length > 1">
+          <v-carousel-item
+            v-for="(item,i) in post.images"
+            :key="i"
+            :src="item"
+          ></v-carousel-item>
+        </v-carousel>
       </v-col>
       <v-col cols="12">
-        <p class="post-detail__description">{{ post.description }}</p>
+        <p
+          v-if="post && post.description"
+          class="post-detail__description">{{ post.description }}</p>
       </v-col>
       <v-col
-        v-if="post.comments.length > 0"
+        v-if="post && post.comments.length > 0"
         cols="12"
+        class="comments"
       >
         <p>Комментарии:</p>
         <div
@@ -71,6 +89,7 @@
               data-aos="fade-up"
               color="darken-2"
               dark
+              @click="addComment"
             >
               Отправить
             </v-btn>
@@ -85,6 +104,7 @@
   import Base from '../../core/Base'
   import { Component } from 'vue-property-decorator'
   import { I_Post } from '~/modules/intefaces'
+  import { Posts } from '~/modules/api/Posts'
 
   @Component({
     validate ({ params }) {
@@ -98,14 +118,44 @@
     }
 
     message: string = ''
-    post: I_Post.IPost = {
-      title: 'Пост1',
-      id: 1,
-      description: 'Мы динамично развивающаяся команда, более 4-х лет работающая в сфере кальянного кейтеринга в Минске и Минской области. Наши основные клиенты – это рекламные агентства, крупные компании и частные лица.\n' +
-        'Каждый наш новый кальян - это уникальный продукт, приготовленный исключительно для Вас.',
-      images: ['https://kalyango.by/wp-content/uploads/2017/07/7.jpg'],
-      comments: ['qwe', 'ewq', 'asdf'],
-      createAt: '10.09.2019'
+    post: I_Post.IPost | null = null
+
+    created () {
+      this.run()
+    }
+
+    async run () {
+      let posts: I_Post.IPost[] = []
+      if (this.$store.state.posts.length > 0) {
+        posts = this.$store.state.posts
+        this.$store.commit('changePosts', posts)
+      } else {
+        posts = await Posts.Api.getPosts()
+      }
+      if (posts && posts.length) {
+        const id = +this.$route.params.detail
+        posts.map((item: I_Post.IPost) => {
+          if (item.id === id) {
+            this.post = item
+            return
+          }
+        })
+      }
+    }
+
+    addComment () {
+      if (this.post && this.message.length > 0) {
+        this.post.comments.push(this.message)
+        this.message = ''
+        const posts: I_Post.IPost[] = this.$store.state.posts
+        posts.map((item: I_Post.IPost, index: number) => {
+          if (item.id === this.post!.id) {
+            posts.splice(index, 1, this.post!)
+          }
+        })
+        this.$store.commit('changePosts', posts)
+        this.$vuetify.goTo('.footer')
+      }
     }
 
   }

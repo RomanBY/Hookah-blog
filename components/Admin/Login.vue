@@ -8,9 +8,11 @@
         cols="8"
         class="my-auto"
       >
-        <h1>Войти в панель администратора</h1>
         <v-card>
-          <v-form>
+          <v-card-title>
+            Вход в панель администратора
+          </v-card-title>
+          <v-form class="mt-5">
             <v-row
               class="post"
               justify="center"
@@ -21,6 +23,7 @@
                   label="User"
                   single-line
                   v-model="user"
+                  :rules="[val => (val || '').length > 2 || 'Введите имя']"
                 ></v-text-field>
               </v-col>
               <v-col cols="8">
@@ -30,6 +33,7 @@
                   label="Password"
                   @click:append="show = !show"
                   type="password"
+                  :rules="[val => (val || '').length > 5 || 'Введите пароль']"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -64,7 +68,7 @@
     password: string | number = ''
 
     getLogin () {
-      this.$store.commit('changeToken', true)
+      this.$store.commit('changeLogin', true)
       this.$emit('change-status', true)
     }
 

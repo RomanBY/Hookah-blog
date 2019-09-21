@@ -11,10 +11,6 @@
         Аналитика
       </v-tab>
       <v-tab class="navigation__tab justify-start">
-        <v-icon left>mdi-plus-circle-outline</v-icon>
-        Создать
-      </v-tab>
-      <v-tab class="navigation__tab justify-start">
         <v-icon left>mdi-post</v-icon>
         Посты
       </v-tab>
@@ -35,7 +31,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component, Watch } from 'vue-property-decorator'
+  import { Component, Watch, Prop } from 'vue-property-decorator'
 
 
   @Component
@@ -45,6 +41,8 @@
       super()
     }
 
+    @Prop() tabNumber!: number
+
     @Watch('tabsControl')
     changeTab (val: number) {
       this.$emit('change-tab', val)
@@ -52,8 +50,12 @@
 
     tabsControl: number = 0
 
+    created () {
+      this.tabsControl = this.tabNumber
+    }
+
     exitAdmin () {
-      this.$store.commit('changeToken', false)
+      this.$store.commit('changeLogin', false)
       this.$router.push('/')
     }
 

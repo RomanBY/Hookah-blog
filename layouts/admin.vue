@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app>
     <v-content class="content">
       <nuxt/>
     </v-content>

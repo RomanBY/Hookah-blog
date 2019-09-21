@@ -22,29 +22,37 @@
           >
             <div data-aos="fade-up">
               <v-text-field
+                ref="name"
                 data-aos-anchor-placement="bottom-bottom"
                 light
                 v-model="name"
                 :counter="10"
                 label="Имя"
                 color="blue-grey"
+                :rules="[val => (val || '').length > 2 || 'Введите имя']"
               ></v-text-field>
             </div>
             <div data-aos="fade-up">
               <v-text-field
+                ref="contact"
+                class="mb-3"
                 light
                 v-model="contact"
                 label="Контакты"
                 color="blue-grey"
+                :counter="20"
+                :rules="[val => (val || '').length > 5 || 'Введите контакты для связи']"
               ></v-text-field>
             </div>
             <div data-aos="fade-up">
               <v-textarea
+                ref="message"
                 light
                 outlined
                 v-model="message"
                 label="Сообщение"
                 color="blue-grey"
+                :counter="100"
               ></v-textarea>
             </div>
             <div data-aos="fade-up">
@@ -60,7 +68,7 @@
                 :disabled="!checkbox"
                 color="white"
                 class="mr-4"
-                @click="showAlert = true"
+                @click="getFeedback"
               >
                 Отправить
               </v-btn>
@@ -104,12 +112,33 @@
       super()
     }
 
+
+
     name: string = ''
     contact: string = ''
     message: string = ''
     checkbox: boolean = false
     showAlert: boolean = false
 
+    getFeedback () {
+      this.showAlert = true
+      this.name = ''
+      this.contact = ''
+      this.message = ''
+      this.checkbox = false
+      Object.keys(this.form).forEach(f => {
+        // @ts-ignore
+        this.$refs[f].reset()
+      })
+    }
+
+    get form () {
+      return {
+        name: this.name,
+        contact: this.contact,
+        message: this.message
+      }
+    }
 
   }
 </script>
