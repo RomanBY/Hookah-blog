@@ -21,6 +21,7 @@
             dark
             text
             @click="savePost"
+            :disabled="!newPost"
           >Сохранить
           </v-btn>
         </v-toolbar-items>
@@ -76,7 +77,6 @@
                   class="mt-2"
                   ref="images"
                   outlined
-                  clearable
                   v-model="images"
                   color="amber lighten-2"
                 ></v-textarea>
@@ -144,6 +144,8 @@
         this.titlePost = ''
         this.description = ''
         this.images = ''
+        // @ts-ignore
+        this.$refs.form.resetValidation()
         this.newPost = null
       }
     }
@@ -158,7 +160,6 @@
           id: this.getId(),
           images: this.getImages()
         }
-        console.log(this.newPost)
       }
     }
 

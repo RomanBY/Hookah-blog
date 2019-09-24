@@ -8,7 +8,7 @@
       <v-col cols="10">
         <v-card
           v-if="item"
-          class=""
+          class="elevation-10"
         >
           <v-card-title>
             {{ item.title }}
