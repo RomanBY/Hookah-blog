@@ -25,7 +25,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'aos/dist/aos.css'
+    'aos/dist/aos.css',
+    '@/assets/style/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App

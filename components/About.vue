@@ -8,7 +8,7 @@
   import Base from '../core/Base'
   import { Component, Watch } from 'vue-property-decorator'
   import AboutCard from '~/components/CardInfo/AboutCard.vue'
-  import { namespace, State } from 'vuex-class'
+  import { State } from 'vuex-class'
 
 
 

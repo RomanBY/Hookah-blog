@@ -48,7 +48,7 @@
       </v-col>
       <v-col
         v-if="post && post.comments.length > 0"
-        cols="12"
+        cols="8"
         class="comments"
       >
         <p>Комментарии:</p>
@@ -105,6 +105,7 @@
   import { Component } from 'vue-property-decorator'
   import { I_Post } from '~/modules/intefaces'
   import { Posts } from '~/modules/api/Posts'
+  import options from '~/.nuxt/vuetify/options'
 
   @Component({
     validate ({ params }) {
@@ -134,10 +135,12 @@
       }
       if (posts && posts.length) {
         const id = +this.$route.params.detail
-        posts.map((item: I_Post.IPost) => {
+        posts.every((item: I_Post.IPost) => {
           if (item.id === id) {
             this.post = item
-            return
+            return false
+          } else {
+            return true
           }
         })
       }
@@ -154,7 +157,14 @@
           }
         })
         this.$store.commit('changePosts', posts)
-        this.$vuetify.goTo('.footer')
+        this.$vuetify.goTo('.footer', this.options)
+      }
+    }
+
+    get options () {
+      return {
+        duration: 800,
+        offset: 500,
       }
     }
 

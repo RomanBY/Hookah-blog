@@ -63,64 +63,6 @@
     </v-col>
     <v-col cols="12">
       <v-dialog
-        v-model="editor"
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-      >
-        <v-card>
-          <v-toolbar>
-            <v-btn icon dark @click="editor = false">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-toolbar-title>Settings</v-toolbar-title>
-            <div class="flex-grow-1"></div>
-            <v-toolbar-items>
-              <v-btn dark text @click="editor = false">Save</v-btn>
-            </v-toolbar-items>
-          </v-toolbar>
-          <v-list three-line subheader>
-            <v-subheader>User Controls</v-subheader>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Content filtering</v-list-item-title>
-                <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Password</v-list-item-title>
-                <v-list-item-subtitle>Require password for purchase or use password to restrict purchase
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-          <v-divider></v-divider>
-          <v-list three-line subheader>
-            <v-subheader>General</v-subheader>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Notifications</v-list-item-title>
-                <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Sound</v-list-item-title>
-                <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Auto-add widgets</v-list-item-title>
-                <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-dialog>
-      <v-dialog
         v-model="view"
         max-width="1200"
       >
@@ -194,6 +136,10 @@
           </div>
         </v-card>
       </v-dialog>
+      <create-post
+        :open-editor="editor"
+        @close-editor="closeEditor($event)"
+      />
     </v-col>
   </v-row>
 </template>
@@ -203,8 +149,13 @@
   import { Component } from 'vue-property-decorator'
   import { I_Post } from '~/modules/intefaces'
   import { Posts as Blog } from '~/modules/api/Posts'
+  import CreatePost from '~/components/Admin/CreatePost.vue'
 
-  @Component
+  @Component({
+    components: {
+      CreatePost
+    }
+  })
   export default class Posts extends Base {
 
     constructor () {
@@ -265,21 +216,23 @@
         this.posts = this.$store.state.posts
       } else {
         this.posts = await Blog.Api.getPosts()
+        this.$store.commit('changePosts', this.posts)
       }
     }
 
     getViewItem (item: I_Post.IPost) {
-      console.log(item)
       this.viewItem = item
       this.view = true
     }
 
     deleteItem (item: I_Post.IPost) {
       if (this.posts && this.posts.length > 0) {
-        this.posts.map((post: I_Post.IPost, index) => {
+        this.posts.every((post: I_Post.IPost, index) => {
           if (item.id === post.id) {
             this.posts!.splice(index, 1)
-            return
+            return false
+          } else {
+            return true
           }
         })
         this.savePosts(this.posts)
@@ -294,15 +247,15 @@
       this.$store.commit('changePosts', posts)
     }
 
+    closeEditor () {
+      this.editor = false
+    }
+
 
   }
 </script>
 <style scoped lang="scss">
   @import "../../assets/variables";
-
-  .post {
-    height: 100vh;
-  }
 
   .table {
     &__cell {

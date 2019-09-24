@@ -17,9 +17,9 @@
                     cols="12"
                     class="display-3"
                   >
-                    <h6>
+                    <h5>
                       {{ item.title }}
-                    </h6>
+                    </h5>
                     <div class="d-flex">
                       <div
                         v-if="item.comments && item.comments.length > 0"
@@ -41,9 +41,12 @@
                   >{{ item.description }}
                   </v-col>
                   <v-col class="mt-auto">{{ item.createAt }}</v-col>
-                  <nuxt-link :to="`/blog/${item.id}`">
+                  <nuxt-link
+                    :to="`/blog/${item.id}`"
+                    class="d-flex"
+                  >
                     <v-btn
-                      class="mt-auto"
+                      class="mt-auto mb-2"
                       dark
                       large
                     >Подробнее
@@ -89,7 +92,7 @@
 
   .post {
     &__text {
-      font-size: 20px;
+      font-size: 1.6rem;
     }
 
     &__comment {

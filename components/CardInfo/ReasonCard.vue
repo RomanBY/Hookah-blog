@@ -1,11 +1,12 @@
 <template>
   <v-card color="white elevation-0 reason">
-    <v-card-title class="reasons__text justify-center">{{ item.title }}</v-card-title>
+    <v-card-title class="reasons__text justify-center my-3">{{ item.title }}</v-card-title>
     <v-img
+      class="mb-3"
       max-height="200"
       contain
       :src="item.imageUrl"></v-img>
-    <v-card-text class="reasons__text-description text-center">{{ item.description }}</v-card-text>
+    <v-card-text class="reasons__text-description text-center mb-3">{{ item.description }}</v-card-text>
   </v-card>
 </template>
 
@@ -44,7 +45,7 @@
       color: black !important;
 
       &-description {
-        font-size: 16px;
+        font-size: 1.2rem;
         line-height: 1.3;
         color: $color--description !important;
       }

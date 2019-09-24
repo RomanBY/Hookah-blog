@@ -9,7 +9,10 @@
             @change-tab="tabNumber = $event"
           />
         </v-navigation-drawer>
-        <v-tabs-items v-model="tabNumber">
+        <v-tabs-items
+          class="tabs-items"
+          v-model="tabNumber"
+        >
           <v-tab-item>
             <analytics/>
           </v-tab-item>
@@ -65,6 +68,10 @@
 </script>
 <style scoped lang="scss">
   @import "../../assets/variables";
+
+  .tabs-items {
+    background: #303030!important;
+  }
 
 </style>
 
