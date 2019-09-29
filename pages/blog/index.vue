@@ -12,6 +12,7 @@
 <script lang="ts">
   import Base from '../../core/Base'
   import { Component } from 'vue-property-decorator'
+  import axios from 'axios'
   import Post from '~/components/Blog/Post.vue'
   import { I_Post } from '~/modules/intefaces'
   import { Posts } from '~/modules/api/Posts'
@@ -40,6 +41,7 @@
         this.posts = await Posts.Api.getPosts()
         if (this.posts && this.posts.length > 0) {
           this.$store.commit('changePosts', this.posts)
+          //const qwe = await axios.post('http://localhost:3000/posts', { posts: this.posts })
         }
       }
     }

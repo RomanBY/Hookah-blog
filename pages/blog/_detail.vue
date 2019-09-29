@@ -105,7 +105,6 @@
   import { Component } from 'vue-property-decorator'
   import { I_Post } from '~/modules/intefaces'
   import { Posts } from '~/modules/api/Posts'
-  import options from '~/.nuxt/vuetify/options'
 
   @Component({
     validate ({ params }) {
@@ -156,6 +155,7 @@
             posts.splice(index, 1, this.post!)
           }
         })
+        Posts.Api.updatePosts(posts)
         this.$store.commit('changePosts', posts)
         this.$vuetify.goTo('.footer', this.options)
       }

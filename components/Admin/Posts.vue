@@ -244,6 +244,7 @@
     }
 
     savePosts (posts: I_Post.IPost[]) {
+      Blog.Api.updatePosts(posts)
       this.$store.commit('changePosts', posts)
     }
 

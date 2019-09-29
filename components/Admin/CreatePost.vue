@@ -106,6 +106,7 @@
   import { Component, Prop } from 'vue-property-decorator'
   import { I_Post } from '~/modules/intefaces'
   import PostPreview from '~/components/Admin/PostPreview.vue'
+  import { Posts } from '~/modules/api/Posts'
 
   @Component({
     components: {
@@ -140,6 +141,7 @@
         this.$emit('close-editor', true)
         const posts: I_Post.IPost[] = this.$store.state.posts
         posts.splice(0, 0, this.newPost)
+        Posts.Api.updatePosts(posts)
         this.$store.commit('changePosts', posts)
         this.titlePost = ''
         this.description = ''

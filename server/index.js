@@ -2,8 +2,17 @@ const express = require('express')
 const consola = require('consola')
 const MongoClient = require('mongodb').MongoClient
 const bodyParser = require('body-parser')
+const db = require('./config/db')
 const {Nuxt, Builder} = require('nuxt')
 const app = express()
+const dbName = 'myProject'
+
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+MongoClient.connect(db.url, (err, client) => {
+  if (err) return console.log(err)
+  require('./routes')(app, client.db(dbName))
+})
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')

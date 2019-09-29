@@ -1,9 +1,55 @@
 import Base from '../../Base'
 import { I_Post } from '~/modules/intefaces'
+import axios from 'axios'
 
 export default class ApiWorker extends Base {
+  private static readonly MAIN_PATH: string = 'http://localhost:3000/posts'
+  private static readonly POST_ID: string = '5d90cf35e76d464ff07ec9d3'
 
   public static async getPosts (): Promise<I_Post.IPost[]> {
+    const { status, data } = await axios.get(`${this.MAIN_PATH}/${this.POST_ID}`)
+    if (status === 200) {
+      const res: I_Post.IPost[] | [] = []
+      if (data.posts && data.posts.length > 0) {
+        data.posts.forEach((item: I_Post.IPost) => {
+          // @ts-ignore
+          const post: I_Post.IPost = {}
+          Object.keys(item).forEach(postKey => {
+            switch (postKey) {
+              case 'comments':
+                post.comments = item[postKey]
+                break
+              case 'createAt':
+                post.createAt = item[postKey]
+                break
+              case 'description':
+                post.description = item[postKey]
+                break
+              case 'id':
+                post.id = item[postKey]
+                break
+              case 'images':
+                post.images = item[postKey]
+                break
+              case 'title':
+                post.title = item[postKey]
+                break
+            }
+          })
+          // @ts-ignore
+          res.push(post)
+        })
+      } return res
+    } else {
+      throw new Error(`Request by api /posts/id returned status ${status}`)
+    }
+  }
+
+  public static async updatePosts (posts: I_Post.IPost[]): Promise<void> {
+    const { status, data } = await axios.put(`${this.MAIN_PATH}/${this.POST_ID}`, { posts: posts })
+  }
+
+  /*public static async getPosts (): Promise<I_Post.IPost[]> {
     return await new Promise((resolve) => {
       setTimeout( async () => {
         return resolve([
@@ -55,5 +101,5 @@ export default class ApiWorker extends Base {
         ])
       }, 800)
     })
-  }
+  }*/
 }
