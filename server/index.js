@@ -1,17 +1,19 @@
 const express = require('express')
 const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
+const MongoClient = require('mongodb').MongoClient
+const bodyParser = require('body-parser')
+const {Nuxt, Builder} = require('nuxt')
 const app = express()
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
-async function start () {
+async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host, port } = nuxt.options.server
+  const {host, port} = nuxt.options.server
 
   // Build only in dev mode
   if (config.dev) {
@@ -31,4 +33,5 @@ async function start () {
     badge: true
   })
 }
+
 start()
