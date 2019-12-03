@@ -12,7 +12,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component, Prop } from 'vue-property-decorator'
+  import { Component, Prop } from 'nuxt-property-decorator'
   import { I_Reason } from '~/modules/intefaces'
 
   @Component

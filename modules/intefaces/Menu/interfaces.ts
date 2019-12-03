@@ -3,6 +3,7 @@ export interface IMainManu {
   goTo: string
   active: boolean
   url: string
+  visible: boolean
 }
 
 export interface INavigation {

@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import Base from '../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import { I_Reason } from '~/modules/intefaces'
   import ReasonCard from '~/components/CardInfo/ReasonCard.vue'
 

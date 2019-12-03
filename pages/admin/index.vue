@@ -34,7 +34,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import Navigation from '~/components/Admin/Navigation.vue'
   import Analytics from '~/components/Admin/Analytics.vue'
   import Posts from '~/components/Admin/Posts.vue'

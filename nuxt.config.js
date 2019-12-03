@@ -1,7 +1,7 @@
 const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -32,7 +32,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/aos.js'
+    {src: '@/plugins/aos.js', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -60,6 +60,7 @@ module.exports = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
+    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: true,
       themes: {
@@ -82,6 +83,12 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    babel: {
+      plugins: [
+        ["@babel/plugin-proposal-decorators", { legacy: true }],
+        ["@babel/plugin-proposal-class-properties", { loose: true }]
+      ]
+    },
     extend (config, ctx) {
     }
   }

@@ -16,7 +16,7 @@
           max-width="30"
           :src="require('~/assets/img/Logo-Main.svg')"
           class="mr-3"
-        ></v-img>
+        />
         <v-toolbar-title
           class="toolbar__name"
         >
@@ -24,15 +24,29 @@
         </v-toolbar-title>
         <v-spacer/>
         <v-toolbar-title
+          v-if="false"
           v-for="(item, key) in menu"
           :key="key"
         >
           <nuxt-link
             class="d-lg-block d-none toolbar__menu-item mx-2"
             :to="item.url"
+            v-if="item.visible"
           >
             {{ item.title }}
           </nuxt-link>
+        </v-toolbar-title>
+        <v-toolbar-title
+          class=""
+          v-for="(item, key) in navigation"
+          :key="key"
+        >
+          <div
+            @click="changePlace(item.goTo)"
+            class="d-lg-block d-none toolbar__menu-item mx-4"
+          >
+            {{ item.title }}
+          </div>
         </v-toolbar-title>
         <v-btn
           icon
@@ -148,7 +162,7 @@
 
 <script lang="ts">
   import Base from '~/core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import { I_Menu } from '~/modules/intefaces'
 
   @Component
@@ -166,19 +180,22 @@
         title: 'Главная',
         goTo: '',
         active: true,
-        url: '/'
+        url: '/',
+        visible: false
       },
       {
         title: 'Блог',
         goTo: '',
         active: false,
-        url: '/blog'
+        url: '/blog',
+        visible: false
       },
       {
         title: 'Админ панель',
         goTo: '',
         active: false,
-        url: '/admin'
+        url: '/admin',
+        visible: false
       }
     ]
     navigation: I_Menu.INavigation[] = [

@@ -103,7 +103,7 @@
 
 <script lang="ts">
   import Base from '../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
 
   @Component
   export default class Contacts extends Base {

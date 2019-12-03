@@ -6,7 +6,7 @@
 
 <script lang="ts">
   import Base from '../core/Base'
-  import { Component, Watch } from 'vue-property-decorator'
+  import { Component, Watch } from 'nuxt-property-decorator'
   import AboutCard from '~/components/CardInfo/AboutCard.vue'
   import { State } from 'vuex-class'
 

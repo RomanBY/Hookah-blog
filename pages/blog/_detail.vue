@@ -102,7 +102,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import { I_Post } from '~/modules/intefaces'
   import { Posts } from '~/modules/api/Posts'
 

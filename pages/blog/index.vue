@@ -11,8 +11,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component } from 'vue-property-decorator'
-  import axios from 'axios'
+  import { Component } from 'nuxt-property-decorator'
   import Post from '~/components/Blog/Post.vue'
   import { I_Post } from '~/modules/intefaces'
   import { Posts } from '~/modules/api/Posts'

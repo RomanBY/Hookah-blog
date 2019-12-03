@@ -37,7 +37,7 @@
 
 <script lang="ts">
   import Base from '../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import { I_Price } from '~/modules/intefaces'
   import PriceCard from '~/components/CardInfo/PriceCard.vue'
 

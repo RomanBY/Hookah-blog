@@ -31,7 +31,7 @@
 
 <script lang="ts">
   import Base from '../../core/Base'
-  import { Component, Watch, Prop } from 'vue-property-decorator'
+  import { Component, Watch, Prop } from 'nuxt-property-decorator'
 
 
   @Component

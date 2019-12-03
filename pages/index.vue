@@ -11,7 +11,7 @@
 
 <script lang="ts">
   import Base from '../core/Base'
-  import { Component } from 'vue-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import MainInfo from '~/components/MainInfo.vue'
   import Parallax from '~/components/Parallax.vue'
   import Reasons from '~/components/Reasons.vue'
