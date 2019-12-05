@@ -5,7 +5,10 @@
         align="center"
         justify="center"
       >
-        <v-col cols="8">
+        <v-col
+          cols="11"
+          sm="8"
+        >
           <h1
             data-aos="fade-right"
             class="display-2 font-weight-thin mb-4 contacts__title mt-4"
@@ -16,7 +19,10 @@
         align="center"
         justify="center"
       >
-        <v-col cols="8">
+        <v-col
+          cols="11"
+          sm="8"
+        >
           <v-form
             lazy-validation
           >
@@ -30,7 +36,7 @@
                 label="Имя"
                 color="blue-grey"
                 :rules="[val => (val || '').length > 2 || 'Введите имя']"
-              ></v-text-field>
+              />
             </div>
             <div data-aos="fade-up">
               <v-text-field
@@ -42,7 +48,7 @@
                 color="blue-grey"
                 :counter="20"
                 :rules="[val => (val || '').length > 5 || 'Введите контакты для связи']"
-              ></v-text-field>
+              />
             </div>
             <div data-aos="fade-up">
               <v-textarea
@@ -53,14 +59,14 @@
                 label="Сообщение"
                 color="blue-grey"
                 :counter="100"
-              ></v-textarea>
+              />
             </div>
             <div data-aos="fade-up">
               <v-checkbox
                 light
                 v-model="checkbox"
                 label="Согласен с политикой конфиденциальности"
-              ></v-checkbox>
+              />
             </div>
             <div data-aos="fade-up">
               <v-btn
@@ -149,6 +155,7 @@
     &-wrap {
       background: white;
       min-height: 600px;
+      overflow: hidden;
     }
 
     &__title {

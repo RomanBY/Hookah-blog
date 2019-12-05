@@ -5,7 +5,8 @@
       class="mb-3"
       max-height="200"
       contain
-      :src="item.imageUrl"></v-img>
+      :src="item.imageUrl"
+    />
     <v-card-text class="reasons__text-description text-center mb-3">{{ item.description }}</v-card-text>
   </v-card>
 </template>

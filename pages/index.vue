@@ -1,11 +1,11 @@
 <template>
   <div>
-    <main-info></main-info>
-    <about></about>
-    <parallax></parallax>
-    <reasons></reasons>
-    <prices></prices>
-    <contacts></contacts>
+    <main-info/>
+    <about/>
+    <parallax/>
+    <reasons/>
+    <prices/>
+    <contacts/>
   </div>
 </template>
 

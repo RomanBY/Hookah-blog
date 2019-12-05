@@ -11,7 +11,7 @@
       justify="center"
       class="mt-3"
     >
-      <h3 class="font-weight-thin">{{ item.description }}</h3>
+      <h3 class="font-weight-thin text-center px-3">{{ item.description }}</h3>
     </v-row>
     <v-row
       align="center"
@@ -33,12 +33,12 @@
       class="mt-5"
     >
       <v-col
-        cols="7"
+        cols="10"
         v-for="(price, index) in item.prices"
         :key="index"
         class="text-center"
       >
-        <p class="my-auto font-weight-medium display-1">{{ price }}</p>
+        <p class="my-auto font-weight-medium display-1 price__sum">{{ price }}</p>
       </v-col>
     </v-row>
   </div>
@@ -72,4 +72,11 @@
     }
   }
 
+  @media (max-width: 500px) {
+    .price {
+      &__sum {
+        font-size: 26px !important;
+      }
+    }
+  }
 </style>

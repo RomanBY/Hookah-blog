@@ -2,7 +2,7 @@
   <v-app dark>
     <div v-scroll="onScroll">
       <v-img
-        v-show="scroll > 1200 && $route.path === '/'"
+        v-show="$route.path === '/'"
         class="bg-image"
         :src="require('../assets/img/bg/actions-bg.jpg')"
         height="100vh"
@@ -43,7 +43,7 @@
         >
           <div
             @click="changePlace(item.goTo)"
-            class="d-lg-block d-none toolbar__menu-item mx-4"
+            class="d-md-block d-none toolbar__menu-item mx-4"
           >
             {{ item.title }}
           </div>
@@ -51,6 +51,7 @@
         <v-btn
           icon
           @click.stop="rightDrawer = !rightDrawer"
+          class="d-md-none"
         >
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -93,58 +94,7 @@
       <v-footer
         class="footer"
       >
-        <v-content>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-row>
-                <v-col
-                  data-aos="fade-up"
-                  data-aos-anchor-placement="top-bottom"
-                  data-aos-delay="100"
-                  cols="4"
-                >
-                  <v-img src="https://hookahcartel.ru/assets/images/logo_footer.jpg"/>
-                </v-col>
-                <v-col
-                  data-aos="fade-up"
-                  data-aos-anchor-placement="top-bottom"
-                  data-aos-delay="200"
-                  cols="4"
-                >
-                  <h2>HOOKAH CARTEL</h2>
-                  <p>Часы работы круглосуточно</p>
-                  <p>Прием заявок с сайта крулостуточно</p>
-                  <p class="mt-5 pt-5">© 2013-2019 Все права защищены</p>
-                </v-col>
-                <v-col
-                  data-aos="fade-up"
-                  data-aos-anchor-placement="top-bottom"
-                  data-aos-delay="300"
-                  cols="4"
-                >
-                  <h2>КОНТАКТЫ</h2>
-                  <p class="mt-4 footer__contacts">
-                    <v-icon class="mr-2">mdi-phone</v-icon>
-                    {{ number }}
-                  </p>
-                  <p class="mt-4 footer__contacts">
-                    <v-icon class="mr-2">mdi-email</v-icon>
-                    qwerty@live.com
-                  </p>
-                  <p>
-                    <v-icon size="45">mdi-instagram</v-icon>
-                    <v-icon size="45">mdi-vk</v-icon>
-                    <v-icon size="45">mdi-facebook</v-icon>
-                    <v-icon size="45">mdi-telegram</v-icon>
-                  </p>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-content>
+        <footer-base/>
       </v-footer>
     </div>
     <v-scale-transition>
@@ -164,8 +114,13 @@
   import Base from '~/core/Base'
   import { Component } from 'nuxt-property-decorator'
   import { I_Menu } from '~/modules/intefaces'
+  import FooterBase from '~/components/Footer.vue'
 
-  @Component
+  @Component({
+    components: {
+      FooterBase
+    }
+  })
   export default class extends Base {
 
     constructor () {
@@ -174,7 +129,6 @@
 
     scroll: number = 0
     rightDrawer: boolean = false
-    number: string = '+375 (33) 333 33 33'
     menu: I_Menu.IMainManu[] = [
       {
         title: 'Главная',
@@ -255,7 +209,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
   }
 
   .drawer {
@@ -268,16 +222,6 @@
     min-height: 250px;
     background: $color--black !important;
     overflow: hidden;
-
-    &__contacts {
-      font-size: 18px;
-      transition: 250ms;
-      cursor: pointer;
-
-      &:hover {
-        color: $color--menu--text-hover;
-      }
-    }
   }
 
   .toolbar {

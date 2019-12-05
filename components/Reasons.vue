@@ -12,7 +12,8 @@
           :data-aos="index === 0 ? 'fade-up-right' : index === reasons.length - 1 ? 'fade-up-left' : 'fade-up'"
           v-for="(reason, index) in reasons"
           :key="index"
-          cols="4"
+          cols="12"
+          md="4"
         >
          <reason-card
            :item="reason"
@@ -66,6 +67,7 @@
     &-wrap {
       background: white;
       min-height: 600px;
+      overflow: hidden;
     }
 
     &__title {

@@ -6,32 +6,21 @@
     >
       <h1 class="display-2 font-weight-thin mb-4 text-center mt-4">Наши цены</h1>
     </v-row>
-    <v-card
-      class="mb-5 prices__card"
-    >
-      <v-row>
-        <v-col
-          class="mt-3 mb-5"
-          cols="6"
-          v-for="(price, index) in prices"
-          :key="index"
+    <v-row justify="center">
+      <v-col
+        class="my-1"
+        cols="10"
+        md="6"
+        v-for="(price, index) in prices"
+        :key="index"
+      >
+        <v-card
+          class="prices__card py-5"
         >
           <price-card :item="price"/>
-        </v-col>
-      </v-row>
-    </v-card>
-    <v-card class="prices__card">
-      <v-row>
-        <v-col
-          class="mt-3 mb-5"
-          cols="6"
-          v-for="(price, index) in pricesSecond"
-          :key="index"
-        >
-          <price-card :item="price"/>
-        </v-col>
-      </v-row>
-    </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -64,10 +53,7 @@
         description: 'ОПТИМАЛЬНО ПОДОЙДЕТ ДЛЯ 25 ГОСТЕЙ',
         attributes: ['5 Кальянов', '1 Дизайнерский кальян', '1 Кальянщик'],
         prices: ['3 часа - $$ рублей', '5 часов - $$ рублей']
-      }
-    ]
-
-    pricesSecond: I_Price.IPrice[] = [
+      },
       {
         title: 'big',
         description: 'ОПТИМАЛЬНО ПОДОЙДЕТ ДЛЯ 50 ГОСТЕЙ',
@@ -89,6 +75,7 @@
 
   .prices {
     min-height: 600px;
+    overflow: hidden;
 
     &__card {
       background: $color-bg--card-opacity !important;

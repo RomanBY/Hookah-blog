@@ -11,7 +11,7 @@
         v-for="(item,i) in slides"
         :key="i"
         :src="item.url"
-      ></v-carousel-item>
+      />
     </v-carousel>
     <v-row
       class="main"
@@ -19,10 +19,11 @@
       justify="center"
     >
       <v-col
-      cols="10"
+      cols="12"
+      md="10"
       class="main__block display-3 text-center"
       >
-        <p>Let’s SMOKE – лучший кальянный кейтеринг</p>
+        <p class="main__block-text">Let’s SMOKE – лучший кальянный кейтеринг</p>
         <v-row justify="center">
           <v-col
             cols="6"
@@ -82,4 +83,44 @@
     }
   }
 
+  @media (max-width: 1263px){
+    .main {
+      &__block {
+        &-text {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 780px){
+    .main {
+      &__block {
+        &-text {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px){
+    .main {
+      &__block {
+        &-text {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px){
+    .main {
+      &__block {
+        &-text {
+          font-size: 18px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
 </style>

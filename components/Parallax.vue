@@ -2,7 +2,7 @@
   <v-parallax
     dark
     :src="require('../assets/img/bg/ab2.jpg')"
-    height="800"
+    height="600"
   >
     <v-container>
       <v-row
@@ -36,7 +36,4 @@
 <style scoped lang="scss">
   @import "../assets/variables";
 
-  .main {
-    min-height: 100vh;
-  }
 </style>
