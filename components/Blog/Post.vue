@@ -42,7 +42,7 @@
                   </v-col>
                   <v-col class="mt-auto">{{ item.createAt }}</v-col>
                   <nuxt-link
-                    :to="`/blog/${item.id}`"
+                    :to="`/blog/${item._id}`"
                     class="d-flex"
                   >
                     <v-btn
@@ -58,7 +58,7 @@
                 cols="6"
                 data-aos="fade-up"
               >
-                <v-img :src="item.images[0]"></v-img>
+                <v-img :src="item.images[0]"/>
               </v-col>
             </v-row>
           </v-container>

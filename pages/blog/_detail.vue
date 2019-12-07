@@ -125,23 +125,18 @@
     }
 
     async run () {
-      let posts: I_Post.IPost[] = []
+      const id = this.$route.params.detail
       if (this.$store.state.posts.length > 0) {
-        posts = this.$store.state.posts
-        this.$store.commit('changePosts', posts)
-      } else {
-        posts = await Posts.Api.getPosts()
-      }
-      if (posts && posts.length) {
-        const id = +this.$route.params.detail
-        posts.every((item: I_Post.IPost) => {
-          if (item.id === id) {
+        this.$store.state.posts.every((item: I_Post.IPost) => {
+          if (item._id === id) {
             this.post = item
             return false
           } else {
             return true
           }
         })
+      } else {
+        this.post = await Posts.Api.getPost(id)
       }
     }
 
@@ -151,11 +146,11 @@
         this.message = ''
         const posts: I_Post.IPost[] = this.$store.state.posts
         posts.map((item: I_Post.IPost, index: number) => {
-          if (item.id === this.post!.id) {
+          if (item._id === this.post!._id) {
             posts.splice(index, 1, this.post!)
           }
         })
-        Posts.Api.updatePosts(posts)
+        Posts.Api.updatePost(this.post)
         this.$store.commit('changePosts', posts)
         this.$vuetify.goTo('.footer', this.options)
       }

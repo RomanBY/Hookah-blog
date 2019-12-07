@@ -2,8 +2,8 @@
   <v-container class="blog">
     <post
       v-if="posts"
-      v-for="(post, index) in posts"
-      :key="index"
+      v-for="(post) in posts"
+      :key="post._id"
       :item="post"
     />
   </v-container>
@@ -38,9 +38,9 @@
         this.posts = this.$store.state.posts
       } else {
         this.posts = await Posts.Api.getPosts()
+        console.log(this.posts)
         if (this.posts && this.posts.length > 0) {
           this.$store.commit('changePosts', this.posts)
-          //const qwe = await axios.post('http://localhost:3000/posts', { posts: this.posts })
         }
       }
     }

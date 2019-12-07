@@ -6,10 +6,14 @@ const db = require('./config/db')
 const {Nuxt, Builder} = require('nuxt')
 const app = express()
 const dbName = 'myProject'
+const mongoClient = new MongoClient(db.url, { useNewUrlParser: true })
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-MongoClient.connect(db.url, (err, client) => {
+app.use(bodyParser.text())
+app.use(bodyParser.json({ type: 'application/json' }))
+
+mongoClient.connect((err, client) => {
   if (err) return console.log(err)
   require('./routes')(app, client.db(dbName))
 })

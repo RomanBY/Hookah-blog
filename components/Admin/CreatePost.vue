@@ -47,7 +47,7 @@
                     required
                     color="amber lighten-2"
                     :rules="[val => (val || '').length > 5 || 'Минимум 5 символов']"
-                  ></v-text-field>
+                  />
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
@@ -62,12 +62,12 @@
                     color="amber lighten-2"
                     :counter="100"
                     :rules="[val => (val || '').length > 15 || 'Минимум 15 символов']"
-                  ></v-textarea>
+                  />
                 </v-list-item-content>
               </v-list-item>
             </v-form>
           </v-list>
-          <v-divider></v-divider>
+          <v-divider/>
           <v-list two-line subheader>
             <v-list-item>
               <v-list-item-content>
@@ -79,7 +79,7 @@
                   outlined
                   v-model="images"
                   color="amber lighten-2"
-                ></v-textarea>
+                />
               </v-list-item-content>
             </v-list-item>
             <v-btn
@@ -141,7 +141,7 @@
         this.$emit('close-editor', true)
         const posts: I_Post.IPost[] = this.$store.state.posts
         posts.splice(0, 0, this.newPost)
-        Posts.Api.updatePosts(posts)
+        Posts.Api.addPost(this.newPost)
         this.$store.commit('changePosts', posts)
         this.titlePost = ''
         this.description = ''

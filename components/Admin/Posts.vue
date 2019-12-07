@@ -228,24 +228,20 @@
     deleteItem (item: I_Post.IPost) {
       if (this.posts && this.posts.length > 0) {
         this.posts.every((post: I_Post.IPost, index) => {
-          if (item.id === post.id) {
+          if (item._id === post._id) {
             this.posts!.splice(index, 1)
             return false
           } else {
             return true
           }
         })
-        this.savePosts(this.posts)
+        Blog.Api.deletePost(item._id!)
+        this.$store.commit('changePosts', this.posts)
       }
     }
 
     addPost () {
       this.editor = true
-    }
-
-    savePosts (posts: I_Post.IPost[]) {
-      Blog.Api.updatePosts(posts)
-      this.$store.commit('changePosts', posts)
     }
 
     closeEditor () {

@@ -23,20 +23,32 @@ module.exports = function(app, db) {
     })
   })
 
-  //add
-  app.post('/posts', (req, res) => {
-    const note = { posts: req.body.posts }
-    db.collection('posts').insert(note, (err, result) => {
+  //addOnePost
+  app.post('/post', (req, res) => {
+    console.log(req)
+    const post = req.body
+    db.collection('posts').insertOne(post, (err, result) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' })
       } else {
-        res.send(result.ops[0])
+        res.send({ status: 'success' })
       }
     })
   })
 
-    //read
-  app.get('/posts/:id', (req, res) => {
+  //get all posts
+  app.get('/posts', (req, res) => {
+    db.collection('posts').find().toArray((err, items) => {
+      if (err) {
+        res.send({'error':'An error has occurred'})
+      } else {
+        res.send(items)
+      }
+    })
+  })
+
+  //get post
+  app.get('/post/:id', (req, res) => {
     const id = req.params.id
     const details = { '_id': new ObjectID(id) }
     db.collection('posts').findOne(details, (err, item) => {
@@ -48,16 +60,36 @@ module.exports = function(app, db) {
     })
   })
 
-  //update
-  app.put ('/posts/:id', (req, res) => {
+  // delete post
+  app.delete('/post/:id', (req, res) => {
     const id = req.params.id
     const details = { '_id': new ObjectID(id) }
-    const note = { posts: req.body.posts }
-    db.collection('posts').update(details, note, (err, result) => {
+    db.collection('posts').findOneAndDelete(details, (err, item) => {
       if (err) {
         res.send({'error':'An error has occurred'})
       } else {
-        res.send(note)
+        res.send('Post ' + id + ' deleted!')
+      }
+    })
+  })
+
+  //update
+  app.put ('/post/:id', (req, res) => {
+    const id = req.params.id
+    const details = { '_id': new ObjectID(id) }
+    const post = req.body
+    db.collection('posts').update(details, {
+      $set: {
+        title: post.title,
+        description: post.description,
+        comments: post.comments,
+        images: post.images
+      }
+      }, (err, result) => {
+      if (err) {
+        res.send({'error':'An error has occurred'})
+      } else {
+        res.send({ status: 'success' })
       }
     })
   })
