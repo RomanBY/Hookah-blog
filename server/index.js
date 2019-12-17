@@ -13,10 +13,16 @@ app.use(bodyParser.json())
 app.use(bodyParser.text())
 app.use(bodyParser.json({ type: 'application/json' }))
 
-mongoClient.connect((err, client) => {
+/*mongoClient.connect((err, client) => {
   if (err) return console.log(err)
   require('./routes')(app, client.db(dbName))
-})
+})*/
+
+mongoClient.connect()
+  .then(client => {
+    require('./routes')(app, client.db(dbName))
+  })
+  .catch(err => console.log(err))
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
