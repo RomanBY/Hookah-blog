@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
-    "nuxt": "^2.9.2",
+    "nuxt": "^2.15.8",
     "nuxt-property-decorator": "^2.5.0",
     "vue-property-decorator": "^8.2.2",
     "vuex-class": "^0.3.0",
